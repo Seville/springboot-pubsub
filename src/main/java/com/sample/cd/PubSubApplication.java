@@ -1,15 +1,24 @@
 package com.sample.cd;
 
+import com.google.cloud.pubsub.v1.AckReplyConsumer;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gcp.pubsub.core.PubSubOperations;
 import org.springframework.cloud.gcp.pubsub.integration.AckMode;
 import org.springframework.cloud.gcp.pubsub.integration.inbound.PubSubInboundChannelAdapter;
+import org.springframework.cloud.gcp.pubsub.integration.outbound.PubSubMessageHandler;
+import org.springframework.cloud.gcp.pubsub.support.GcpPubSubHeaders;
 import org.springframework.context.annotation.Bean;
+import org.springframework.integration.annotation.MessagingGateway;
+import org.springframework.integration.annotation.ServiceActivator;
+import org.springframework.integration.channel.DirectChannel;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.MessageHandler;
 
 import java.io.IOException;
+
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 @SpringBootApplication
 public class PubSubApplication {
@@ -26,4 +35,33 @@ public class PubSubApplication {
 
         return adapter;
     }
+
+    @Bean
+    public MessageChannel pubsubInputChannel() {
+        return new DirectChannel();
+    }
+
+    @Bean
+    @ServiceActivator(inputChannel = "pubsubInputChannel")
+    public MessageHandler messageReceiver() {
+        return message -> {
+            LOGGER.info("Message arrived! Payload: " + message.getPayload());
+            AckReplyConsumer consumer = (AckReplyConsumer) message.getHeaders().get(GcpPubSubHeaders.ACKNOWLEDGEMENT);
+            consumer.ack();
+        };
+    }
+
+    // Outbound channel adapter
+    @Bean
+    @ServiceActivator(inputChannel = "pubsubOutputChannel")
+    public MessageHandler messageSender(PubSubOperations pubsubTemplate) {
+        return new PubSubMessageHandler(pubsubTemplate, "testTopic");
+    }
+
+    @MessagingGateway(defaultRequestChannel = "pubsubOutputChannel")
+    public interface PubsubOutboundGateway {
+
+        void sendToPubsub(String text);
+    }
+
 }
