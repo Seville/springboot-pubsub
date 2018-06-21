@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.api.grpc:grpc-google-cloud-pubsub-v1:0.8.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/grpc-google-cloud-pubsub-v1/0.8.0/3f1e49b76ae74502421e5a700f59e6bd8759038b/grpc-google-cloud-pubsub-v1-0.8.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/grpc-google-cloud-pubsub-v1/0.8.0/6ead1e25db15d172f6ee5583c1ca7682317df77b/grpc-google-cloud-pubsub-v1-0.8.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

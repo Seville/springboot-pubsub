@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.springframework.cloud:spring-cloud-gcp-autoconfigure:1.0.0.M3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.cloud/spring-cloud-gcp-autoconfigure/1.0.0.M3/cae05cd82c62523008d5ee71219483468fcc9429/spring-cloud-gcp-autoconfigure-1.0.0.M3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.cloud/spring-cloud-gcp-autoconfigure/1.0.0.M3/3b4bda553d18d2815b9a298acfb4c7532d28afb2/spring-cloud-gcp-autoconfigure-1.0.0.M3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
