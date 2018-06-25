@@ -1,4 +1,4 @@
-package com.sample.cd;
+package com.sample.cd.controller;
 
 import com.sample.cd.PubSubApplication.PubsubOutboundGateway;
 import org.springframework.beans.factory.annotation.Autowired;
